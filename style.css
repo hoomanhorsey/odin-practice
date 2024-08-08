@@ -1,0 +1,47 @@
+.menuBtn {
+  display: block;
+  margin: 5px;
+  padding: 5px;
+  border-color: aquamarine;
+  border-width: 5px;
+  border-radius: 5%;
+  background-color: aquamarine;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+  font-size: larger;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  display: block;
+}
+
+ul li:hover ul {
+  font-weight: 100;
+  visibility: visible;
+  display: block;
+  background-color: aqua;
+}
+
+/* ul li ul:hover {
+  display: block;
+} */
+
+ul li ul {
+  visibility: hidden;
+}
+
+ul li ul li {
+  display: block;
+  margin: 5px;
+  padding: 5px;
+
+  font-family: "Courier New", Courier, monospace;
+}
+/* 
+ul li ul li:hover {
+  display: block;
+} */
