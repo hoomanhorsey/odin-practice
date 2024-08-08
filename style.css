@@ -1,10 +1,10 @@
 .menuBtn {
   display: block;
-  margin: 5px;
-  padding: 5px;
+  /* margin: 5px;
+  padding: 5px; */
   border-color: aquamarine;
   border-width: 5px;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   background-color: aquamarine;
   font-family: "Courier New", Courier, monospace;
   font-weight: 800;
@@ -15,7 +15,14 @@ a {
   text-decoration: none;
 }
 
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
 ul li {
+  margin: 0px;
+  padding: 0px;
   display: block;
 }
 
