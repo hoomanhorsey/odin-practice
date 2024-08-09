@@ -1,7 +1,11 @@
-.menuBtn {
-  display: block;
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+.menuCategory {
   /* margin: 5px;
   padding: 5px; */
+
   border-color: aquamarine;
   border-width: 5px;
   /* border-radius: 5%; */
@@ -11,6 +15,11 @@
   font-size: larger;
 }
 
+.menuItem,
+.menuSubCat {
+  max-width: 200px;
+  background-color: bisque;
+}
 a {
   text-decoration: none;
 }
@@ -26,12 +35,21 @@ ul li {
   display: block;
 }
 
-ul li:hover ul {
+.dropDownMenuHidden {
+  display: none;
+}
+
+.dropDownMenuVisible {
+  visibility: visible;
+}
+/* 
+ul li ul {
   font-weight: 100;
   visibility: visible;
   display: block;
   background-color: aqua;
-}
+  max-width: 300px;
+} */
 
 /* ul li ul:hover {
   display: block;
