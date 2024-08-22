@@ -1,0 +1,97 @@
+html,
+body {
+  height: 100%; /* Ensure the body and html take up full height */
+  margin: 0; /* Remove default margin */
+  /* display: flex; */
+  justify-content: center; /* Center the grid horizontally */
+  align-items: center; /* Center the grid vertically */
+}
+
+.page {
+  height: 100vh;
+  display: grid;
+
+  grid-template-rows: repeat (4, 1fr);
+  place-items: center;
+}
+
+.page-mid {
+  width: 200px; /* Set width of the picture frame */
+  overflow: hidden; /* Hide overflow to show only one slide at a time */
+  position: relative;
+}
+
+.frame {
+  width: 1300px;
+  grid-row: 2;
+  color: red;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+  transform: translate(0px);
+}
+
+.slide {
+  /* justify-content: center; */
+  color: blue;
+  text-align: center;
+  font-size: larger;
+}
+
+.navDots {
+  display: grid;
+
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row: 2;
+}
+.navDotColumns {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(11, 1fr);
+
+  grid-column: 3;
+  justify-content: center;
+}
+
+.dot {
+  width: 15px; /* Set the width */
+  height: 15px; /* Set the height to be equal to the width */
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.dot-dark-color {
+  background-color: lightgray;
+}
+.dot-light-color {
+  background-color: darkgrey;
+}
+
+.cat {
+  width: 200px;
+  height: 200px;
+}
+
+.navArrows {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.arrows {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  grid-column: 2;
+  text-align: center;
+}
+
+.previous {
+  display: grid;
+  grid-column: 2;
+}
+.next {
+  display: grid;
+  grid-column: 3;
+}
