@@ -3,6 +3,23 @@ addEventListener("DOMContentLoaded", () => {
   const dots = document.querySelectorAll(".dot");
   dots[currentDotId].style.backgroundColor = "darkgray";
 
+  setTimeout(() => advanceImg(currentDotId, dots), 5000);
+
+  function advanceImg(currentDotId, dots) {
+    console.log(currentDotId);
+    if (currentDotId === undefined) {
+      currentDotId = -1;
+    } else if (currentDotId >= 4) {
+      currentDotId = -1;
+    }
+    currentDotId = Number(currentDotId) + 1;
+
+    let nextDot = Number(currentDotId) + 1;
+    frameTransform(nextDot, dots);
+
+    setTimeout(() => advanceImg(currentDotId, dots), 5000);
+  }
+
   arrowPreviousListener(currentDotId);
   arrowNextListener();
 
