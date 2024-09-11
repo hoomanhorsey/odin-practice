@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation Form</title>
+
+    <link rel="stylesheet" href="formStyle.css" />
+    <script src="formJavascript.js"></script>
+  </head>
+  <body>
+    <div class="title">Form Validation Exercise</div>
+    <form novalidate>
+      <ul>
+        <li>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+          <span id="errorMsgEmail"></span>
+        </li>
+        <li>
+          <label for="country">Country</label>
+          <input type="text" id="country" name="country" />
+          <span id="errorMsgCountry"></span>
+        </li>
+        <li>
+          <label for="postcode">Postcode</label>
+          <input
+            type="number"
+            id="postcode"
+            name="postcode"
+            min="1000"
+            max="9999"
+          />
+          <span id="errorMsgPostcode"></span>
+        </li>
+        <li>
+          <label for="password">Password (min length 8 chars)</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="8"
+            maxlength="16"
+          />
+          <span id="errorMsgPassword"></span>
+        </li>
+        <li>
+          <label for="passwordConfirm">Password Confirmation</label>
+          <input
+            type="password"
+            id="passwordConfirm"
+            name="passwordConfirm"
+            minlength="8"
+            maxlength="16"
+          />
+          <span id="errorMsgPasswordConfirm"></span>
+        </li>
+      </ul>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
