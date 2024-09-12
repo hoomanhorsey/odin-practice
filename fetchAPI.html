@@ -66,10 +66,25 @@
       function loadImage(imageRequest) {
         fetch(imageRequest)
           .then(function (response) {
+            console.log(response.ok);
+            console.log(response.status);
+
+            // error 429 is too many requests. put in an error message for that?
+
+            if (response.status === 401) {
+              img.src = "sadpuppy401.png";
+            } else if (!response.ok) {
+              img.src = "sadpuppyerror.png";
+            }
             return response.json();
           })
           .then(function (response) {
             img.src = response.data.images.original.url;
+          })
+          .catch(function (err) {
+            console.log(err);
+            console.log("catch error");
+            img.src = "sadpuppyerror.png";
           });
       }
     </script>
