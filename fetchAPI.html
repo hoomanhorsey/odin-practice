@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        grid-template-rows: 1fr 1fr 1fr;
+        background-color: #e6d8e7;
+        background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239800a1' fill-opacity='0.22'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        display: grid;
+        height: 90vh;
+        align-items: center;
+        justify-content: center;
+      }
+      button {
+        display: grid;
+        height: 2%;
+
+        background-color: bisque;
+        border-radius: 2%;
+        border-width: 3px;
+        border-color: bisque;
+        font-size: xx-large;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+    <div></div>
+    <div class="div">
+      <img src="#" />
+    </div>
+    <div>
+      <form id="imageForm">
+        <label for="imageInput">Search for image </label>
+        <input type="text" id="imageInput" name="imageInput" />
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <script>
+      const img = document.querySelector("img");
+
+      const imageForm = document.getElementById("imageForm");
+      const imageInput = document.getElementById("imageInput");
+
+      imageForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const searchImage = imageInput.value;
+
+        const imageRequest = new Request(
+          `https://api.giphy.com/v1/gifs/translate?api_key=IjTmlnWb2C2AVGtWnglFoUWx4P679A6P&s=${searchImage}`,
+          { mode: "cors" }
+        );
+        loadImage(imageRequest);
+      });
+      // Load page with an image of Buble to get started
+      const firstImage = new Request(
+        "https://api.giphy.com/v1/gifs/translate?api_key=IjTmlnWb2C2AVGtWnglFoUWx4P679A6P&s=buble",
+        { mode: "cors" }
+      );
+      loadImage(firstImage);
+
+      function loadImage(imageRequest) {
+        fetch(imageRequest)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (response) {
+            img.src = response.data.images.original.url;
+          });
+      }
+    </script>
+  </body>
+</html>
