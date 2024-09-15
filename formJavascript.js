@@ -39,7 +39,6 @@ addEventListener("DOMContentLoaded", () => {
 
   const formPostcode = form.postcode;
   formPostcode.addEventListener("blur", (event) => {
-    console.log(event.target.value);
     formPostcode.setCustomValidity("");
 
     const errorMsgPostcode = document.getElementById("errorMsgPostcode");
