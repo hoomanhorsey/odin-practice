@@ -36,7 +36,7 @@ console.log("Number: 2, Result: " + sumToRecursion(2));
 console.log("Number: 3, Result: " + sumToRecursion(3));
 console.log("Number: 4, Result: " + sumToRecursion(4));
 console.log("Number: 5, Result: " + sumToRecursion(5));
-console.log("Number: 100, Result: " + sumToRecursion(9999));
+console.log("Number: 100, Result: " + sumToRecursion(999));
 
 // Write a function called power which takes in a base and an exponent. If the exponent is 0, return 1.
 
@@ -66,29 +66,91 @@ function factorial(n) {
 console.log("Factorial " + factorial(5));
 
 // Question 4: Check all values in an array
-
-// Write a function called all which accepts an array and a callback and returns true if every value in the array returns true when passed as parameter to the callback function
+// Write a function called all which
+// accepts an array and a callback; and
+// returns true if
+// every value in the array returns true when passed as parameter to the callback function
 
 function all(array, callback) {
   // base
+
+  console.log("array length " + array.length);
+  let sum = 0;
   array.forEach((e) => {
-    console.log(e);
+    console.log("called for each on array" + e);
+
+    console.log(callback(e));
+    sum = sum + 1;
+    console.log("sum " + sum);
+    if (callback(e) == false) {
+      console.log("Found a false one");
+      return false;
+    }
+
+    if (sum == array.length) {
+      console.log(" all is true");
+    }
+    // if (sum == array.length) {
+    //   return true;
+    // }
+
+    // if (callback(e) == false) {
+    //   console.log(e, callback(e));
+
+    //   return false;
+    // } else {
+    //   callback(e);
+
+    //   console.log(e, true);
+    //   // recursive bit
+    //   // all(e, callback);
+    //   // alert("hello");
+    // }
   });
-  // recursive bit
 }
 
-all([1, 2, 9], function (num) {
-  return num < 7;
-});
+function all1(array, callback) {
+  // base
+  console.log(array, array.length);
+  console.log(array[0]);
+  console.log(callback(array[0]));
 
-function callback() {
-  console.log("callback function placeholder");
+  // if (callback(array[0]) == false) {
+  //   console.log("end of function");
+
+  if (callback(array[0] == true) && array.length == 0) {
+    return true;
+  } else if (!callback(array[0])) {
+    console.log("called false");
+    return false;
+    // Could probably return false as well
+
+    // return "end";
+  } else {
+    array.shift(); //removes first element from array
+    console.log(array);
+
+    return all1(array, callback);
+  }
 }
+
 console.log(
-  all([1, 2, 9], function (num) {
+  all1([1, 2, 5], function (num) {
     return num < 7;
   })
-); // false
+);
+// all([1, 2, 9], function (num) {
+//   return num < 7;
+// });
+
+// function callback() {
+//   console.log("callback function placeholder");
+// }
+// console.log(
+//   all([1, 2, 9], function (num) {
+//     return num < 7;
+//   })
+// ); // false
 
 // Question 5: Product of an array
 
