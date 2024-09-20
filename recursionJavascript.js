@@ -71,90 +71,67 @@ console.log("Factorial " + factorial(5));
 // returns true if
 // every value in the array returns true when passed as parameter to the callback function
 
-function all(array, callback) {
-  // base
-
-  console.log("array length " + array.length);
-  let sum = 0;
-  array.forEach((e) => {
-    console.log("called for each on array" + e);
-
-    console.log(callback(e));
-    sum = sum + 1;
-    console.log("sum " + sum);
-    if (callback(e) == false) {
-      console.log("Found a false one");
-      return false;
-    }
-
-    if (sum == array.length) {
-      console.log(" all is true");
-    }
-    // if (sum == array.length) {
-    //   return true;
-    // }
-
-    // if (callback(e) == false) {
-    //   console.log(e, callback(e));
-
-    //   return false;
-    // } else {
-    //   callback(e);
-
-    //   console.log(e, true);
-    //   // recursive bit
-    //   // all(e, callback);
-    //   // alert("hello");
-    // }
-  });
-}
-
 function all1(array, callback) {
   // base
-  console.log(array, array.length);
-  console.log(array[0]);
-  console.log(callback(array[0]));
-
-  // if (callback(array[0]) == false) {
-  //   console.log("end of function");
 
   if (callback(array[0] == true) && array.length == 0) {
     return true;
   } else if (!callback(array[0])) {
     console.log("called false");
     return false;
-    // Could probably return false as well
-
-    // return "end";
   } else {
     array.shift(); //removes first element from array
     console.log(array);
-
     return all1(array, callback);
   }
 }
 
 console.log(
-  all1([1, 2, 5], function (num) {
+  all1([9, 2, 1], function (num) {
     return num < 7;
   })
 );
-// all([1, 2, 9], function (num) {
-//   return num < 7;
-// });
-
-// function callback() {
-//   console.log("callback function placeholder");
-// }
-// console.log(
-//   all([1, 2, 9], function (num) {
-//     return num < 7;
-//   })
-// ); // false
 
 // Question 5: Product of an array
 
 // Write a function called productOfArray which takes in an array of numbers and returns the product of them all
+
+// pseduocode
+
+// function productOfArray()
+// take array
+//   shallow copy array
+//   declare product
+//   exit - if array length is 1, return array[1]???  If array.lenght is zero, then array is empty -what are you returning to multiply against???
+
+//   else
+
+//     product is the first number of array (only on first iteration)
+//     array - delete first item from array
+//     product = array[0] x productOfArray(array)
+
+function productOfArray(array) {
+  var copyOfArray = copyOfArray || array.slice();
+  console.log(copyOfArray);
+
+  var product = product || 0;
+  if (copyOfArray.length === 1) {
+    return copyOfArray[0];
+  } else {
+    product = product || copyOfArray[0];
+    console.log(product);
+    copyOfArray.shift();
+    // copyOfArray.slice(1);
+    console.log(copyOfArray);
+
+    return product * productOfArray(copyOfArray);
+  }
+}
+
+var six = productOfArray([1, 2, 3]); // 6
+console.log(six);
+var sixty = productOfArray([1, 2, 3, 10]); // 60
+console.log(sixty);
 
 // Question 6: Search JS object
 
