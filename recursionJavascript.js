@@ -161,14 +161,17 @@ function contains(nestedObject, n) {
   // If it is an object, an object is return so the 2 objects are ===.
   if (nestedObject !== Object(nestedObject)) {
     console.log(nestedObject);
-    return; // what do I return;
+    return false; // what do I return?;
   } else {
     for (let key in nestedObject) {
       console.log(key);
       console.log(nestedObject[key]);
 
-      if (key === "data") {
+      if (nestedObject[key] === n) {
         alert("yay");
+        return true;
+      } else {
+        return contains(nestedObject[key], n);
       }
     }
 
@@ -179,7 +182,11 @@ function contains(nestedObject, n) {
 
 let hasIt = contains(nestedObject, 44); // true
 let doesntHaveIt = contains(nestedObject, "foo"); // false
-let testypoo = contains("boo", 69);
+
+console.log(hasIt);
+console.log(doesntHaveIt);
+
+// let testypoo = contains("boo", 69);
 
 // Question 7: Parse a multi-dimensional array
 
