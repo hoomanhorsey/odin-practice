@@ -118,10 +118,9 @@ function productOfArray(array) {
   if (copyOfArray.length === 1) {
     return copyOfArray[0];
   } else {
-    product = product || copyOfArray[0];
+    product = copyOfArray[0];
     console.log(product);
     copyOfArray.shift();
-    // copyOfArray.slice(1);
     console.log(copyOfArray);
 
     return product * productOfArray(copyOfArray);
@@ -136,6 +135,51 @@ console.log(sixty);
 // Question 6: Search JS object
 
 // Write a function called contains that searches for a value in a nested object. It returns true if the object contains that value.
+
+var nestedObject = {
+  data: {
+    info: {
+      stuff: {
+        thing: {
+          moreStuff: {
+            magicNumber: 44,
+            something: "foo2",
+          },
+        },
+      },
+    },
+  },
+};
+
+// first test. Return if object contains a non-object, i.e. a variable or a string.
+function contains(nestedObject, n) {
+  console.log(nestedObject.data);
+  // console.log(nestedObject.data.info.stuff.thing.moreStuff.magicNumber);
+
+  // Wrapping an object in Object() return the value of the object, whereas putting a primitive in there wraps it in an object
+  // If it is a primative, the test returns an Object which is != to the primitive value
+  // If it is an object, an object is return so the 2 objects are ===.
+  if (nestedObject !== Object(nestedObject)) {
+    console.log(nestedObject);
+    return; // what do I return;
+  } else {
+    for (let key in nestedObject) {
+      console.log(key);
+      console.log(nestedObject[key]);
+
+      if (key === "data") {
+        alert("yay");
+      }
+    }
+
+    console.log(nestedObject);
+    // return contains(nestedObject, n);
+  }
+}
+
+let hasIt = contains(nestedObject, 44); // true
+let doesntHaveIt = contains(nestedObject, "foo"); // false
+let testypoo = contains("boo", 69);
 
 // Question 7: Parse a multi-dimensional array
 
