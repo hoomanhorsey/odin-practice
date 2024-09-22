@@ -112,16 +112,16 @@ console.log(
 
 function productOfArray(array) {
   var copyOfArray = copyOfArray || array.slice();
-  console.log(copyOfArray);
+  // console.log(copyOfArray);
 
   var product = product || 0;
   if (copyOfArray.length === 1) {
     return copyOfArray[0];
   } else {
     product = copyOfArray[0];
-    console.log(product);
+    // console.log(product);
     copyOfArray.shift();
-    console.log(copyOfArray);
+    // console.log(copyOfArray);
 
     return product * productOfArray(copyOfArray);
   }
@@ -168,7 +168,7 @@ function contains(nestedObject, n) {
       console.log(nestedObject[key]);
 
       if (nestedObject[key] === n) {
-        alert("yay");
+        // alert("yay");
         return true;
       } else {
         return contains(nestedObject[key], n);
@@ -191,6 +191,56 @@ console.log(doesntHaveIt);
 // Question 7: Parse a multi-dimensional array
 
 // Given a multi-dimensional integer array, return the total number of integers stored inside this array
+
+// Pseduocode
+
+// Basecase
+// Check length of array - if length is zero, then review is finished.
+
+// Recursion
+// else,
+// check value of array[0]...
+//   if array[0] is an array,
+//       then put array into totalIntegers(array)
+//     else if typeOf array[0] === Number
+//         return number++
+
+function totalIntegers(array) {
+  let x = 0;
+
+  var copyArray = copyArray || array.slice();
+
+  console.log(copyArray);
+  if (copyArray.length === 0) {
+    return x;
+  } else {
+    console.log(typeof copyArray[0]);
+    if (typeof copyArray[0] !== "number") {
+      // this number test won't work because the arrays also include strings.
+      console.log("copyArray[0] is an object: ");
+      console.log(copyArray[0]);
+      console.log("callin initial recursion");
+      return totalIntegers(copyArray[0]);
+    } else {
+      for (let value in copyArray) {
+        console.log(value);
+      }
+
+      console.log(copyArray);
+      console.log("found a number: " + copyArray[0]);
+      x++;
+      copyArray.slice(1);
+      console.log("after slice: " + copyArray);
+      console.log("x: " + x);
+      return x;
+    }
+  }
+}
+/// check array
+var seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
+console.log("seven: ", seven);
+// var none = totalIntegers([1, 1]); // 0
+// console.log("none", none);
 
 // Question 8:
 
