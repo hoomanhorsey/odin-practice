@@ -209,31 +209,76 @@ function totalIntegers(array) {
   let x = 0;
 
   var copyArray = copyArray || array.slice();
-
+  console.log("calling function ");
   console.log(copyArray);
   if (copyArray.length === 0) {
     return x;
   } else {
-    console.log(typeof copyArray[0]);
-    if (typeof copyArray[0] !== "number") {
-      // this number test won't work because the arrays also include strings.
-      console.log("copyArray[0] is an object: ");
+    if (!Array.isArray(copyArray[0])) {
       console.log(copyArray[0]);
-      console.log("callin initial recursion");
-      return totalIntegers(copyArray[0]);
     } else {
-      for (let value in copyArray) {
-        console.log(value);
-      }
+      // check to see if copyArray[0] is an array .
+      // If not an array, go straight to test.
 
-      console.log(copyArray);
-      console.log("found a number: " + copyArray[0]);
-      x++;
-      copyArray.slice(1);
-      console.log("after slice: " + copyArray);
-      console.log("x: " + x);
-      return x;
+      // If array, then check values...
+
+      for (let value of copyArray[0]) {
+        console.log(copyArray[0]);
+        console.log(value);
+        console.log(Array.isArray(value));
+
+        if (Array.isArray(value)) {
+          totalIntegers(copyArray[0]);
+        } else {
+          console.log("first test");
+          console.log(value);
+
+          if (typeof value === "number") {
+            alert("yay a number " + value);
+
+            copyArray = copyArray[0].slice(1);
+            console.log("return, after a number");
+            console.log(copyArray);
+            x++;
+            return totalIntegers(copyArray);
+          } else {
+            alert("not a number, boo" + copyArray[0]);
+            copyArray = copyArray[0].slice(1);
+
+            console.log(copyArray);
+            console.log("return, after no number");
+
+            return totalIntegers(copyArray);
+          }
+        }
+        console.log("return");
+
+        copyArray = copyArray.slice(1);
+        console.log(copyArray);
+
+        return totalIntegers(copyArray);
+      }
     }
+    // console.log(typeof copyArray[0]);
+    // if (typeof copyArray[0] !== "number") {
+    //   // this number test won't work because the arrays also include strings.
+    //   console.log("copyArray[0] is an object: ");
+    //   console.log(copyArray[0]);
+    //   console.log("callin initial recursion");
+    //   return totalIntegers(copyArray[0]);
+    // } else {
+    //   for (let value in copyArray) {
+    //     console.log(value);
+    //   }
+
+    //   console.log(copyArray);
+    //   console.log("found a number: " + copyArray[0]);
+    //   x++;
+    //   copyArray.slice(1);
+    //   console.log("after slice: " + copyArray);
+    //   console.log("x: " + x);
+    //   return x;
+    // }
   }
 }
 /// check array
