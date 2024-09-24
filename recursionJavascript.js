@@ -192,19 +192,6 @@ console.log(doesntHaveIt);
 
 // Given a multi-dimensional integer array, return the total number of integers stored inside this array
 
-// Pseduocode
-
-// Basecase
-// Check length of array - if length is zero, then review is finished.
-
-// Recursion
-// else,
-// check value of array[0]...
-//   if array[0] is an array,
-//       then put array into totalIntegers(array)
-//     else if typeOf array[0] === Number
-//         return number++
-
 function totalIntegers(array) {
   let x = 0;
 
@@ -214,76 +201,100 @@ function totalIntegers(array) {
   if (copyArray.length === 0) {
     return x;
   } else {
-    if (!Array.isArray(copyArray[0])) {
-      console.log(copyArray[0]);
-    } else {
-      // check to see if copyArray[0] is an array .
-      // If not an array, go straight to test.
+    // check to see if copyArray[0] is an array .
+    // If not an array, go straight to test.
 
-      // If array, then check values...
+    // If array, then check values...
 
+    // for (let value of copyArray[0]) {
+    console.log(copyArray[0]);
+    //   console.log(value);
+    //   console.log(Array.isArray(value));
+
+    if (Array.isArray(copyArray[0])) {
       for (let value of copyArray[0]) {
-        console.log(copyArray[0]);
-        console.log(value);
-        console.log(Array.isArray(value));
+        return totalIntegers(value);
+      }
+    } else {
+      let value = copyArray[0];
+      console.log("first test");
+      console.log(value);
 
-        if (Array.isArray(value)) {
-          totalIntegers(copyArray[0]);
-        } else {
-          console.log("first test");
-          console.log(value);
-
-          if (typeof value === "number") {
-            alert("yay a number " + value);
-
-            copyArray = copyArray[0].slice(1);
-            console.log("return, after a number");
-            console.log(copyArray);
-            x++;
-            return totalIntegers(copyArray);
-          } else {
-            alert("not a number, boo" + copyArray[0]);
-            copyArray = copyArray[0].slice(1);
-
-            console.log(copyArray);
-            console.log("return, after no number");
-
-            return totalIntegers(copyArray);
-          }
-        }
-        console.log("return");
-
-        copyArray = copyArray.slice(1);
+      if (typeof value === "number") {
+        console.log("yay a number " + value);
         console.log(copyArray);
+
+        // copyArray = copyArray[0].slice(1);
+        console.log("return, after a number");
+        x++;
+        return copyArray;
+      } else {
+        alert("not a number, boo" + copyArray[0]);
+        copyArray = copyArray[0].slice(1);
+
+        console.log(copyArray);
+        console.log("return, after no number");
 
         return totalIntegers(copyArray);
       }
     }
-    // console.log(typeof copyArray[0]);
-    // if (typeof copyArray[0] !== "number") {
-    //   // this number test won't work because the arrays also include strings.
-    //   console.log("copyArray[0] is an object: ");
-    //   console.log(copyArray[0]);
-    //   console.log("callin initial recursion");
-    //   return totalIntegers(copyArray[0]);
-    // } else {
-    //   for (let value in copyArray) {
-    //     console.log(value);
-    //   }
+    console.log("return");
 
-    //   console.log(copyArray);
-    //   console.log("found a number: " + copyArray[0]);
-    //   x++;
-    //   copyArray.slice(1);
-    //   console.log("after slice: " + copyArray);
-    //   console.log("x: " + x);
-    //   return x;
-    // }
+    copyArray = copyArray.slice(1);
+    console.log(copyArray);
+
+    return totalIntegers(copyArray);
   }
 }
-/// check array
-var seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
-console.log("seven: ", seven);
+
+function totalIntegers(array) {
+  // base
+  console.log("running testIntegers");
+  let tally = 0;
+  if (!Array.isArray(array)) {
+    console.log("test, not an array");
+    return tally;
+  } else {
+    for (let value of array) {
+      console.log("running the let value of array loop");
+      console.log(value, array);
+      if (Array.isArray(value)) {
+        console.log(value);
+        tally += totalIntegers(value);
+      } else {
+        if (typeof value !== "number") {
+          console.log("No number. But value is:  " + value);
+        } else {
+          console.log("Found a number. Value is: " + value);
+          tally = tally + 1;
+          console.log("tally " + tally);
+        }
+      }
+    }
+  }
+  return tally;
+}
+
+var result = totalIntegers([
+  0,
+  3,
+  8,
+  [3, 5, "fish", 8, 7],
+  ["foo"],
+  [],
+  [4, [5, 6]],
+  [[5], 3],
+]); // 7
+console.log("result: ", result);
+
+var testy = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
+console.log("testy result: ", testy);
+
+// var seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
+// console.log("seven: ", seven);
+//
+//
+
 // var none = totalIntegers([1, 1]); // 0
 // console.log("none", none);
 
