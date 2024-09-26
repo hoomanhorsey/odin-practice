@@ -1,9 +1,12 @@
-console.log("hi");
 function mergeSort(array) {
-  if (array.length < 2) return array;
-  else {
-    if (array.length > 2) var halfLength = 0;
+  if (array.length < 2) {
+    console.log("end of array");
+    console.log(array);
+    return array;
+  } else {
+    // if (array.length > 2) var halfLength = 0;
 
+    // halves the array into 2 arrays.
     halfLength = Math.floor(array.length / 2);
     var leftArray = [];
     var rightArray = [];
@@ -11,24 +14,56 @@ function mergeSort(array) {
     leftArray = array.slice(0, halfLength);
     rightArray = array.slice(halfLength, array.length);
 
-    console.log(halfLength);
+    console.log("halflength: " + halfLength);
     console.log("leftArray");
     console.log(leftArray);
     console.log("rightArray");
     console.log(rightArray);
 
-    if (leftArray.length < 2) {
-      return mergeSort(rightArray);
-    } else {
-      return mergeSort(leftArray);
+    // if (leftArray.length < 2) {
+    //   console.log("calling right");
+    //   return mergeSort(rightArray);
+    // } else {
+    //   console.log("calling left");
+    //   return mergeSort(leftArray);
+
+    // mergeSort(rightArray);
+
+    // let tempArray = [];
+    // if (leftArray[0] < rightArray[0]) {
+    //   tempArray.push(leftArray[0]);
+    //   tempArray.push(rightArray[0]);
+    // } else {
+    //   tempArray.push(rightArray[0]);
+    //   tempArray.push(leftArray[0]);
+    // }
+    // mergeSort(leftArray);
+    // console.log(tempArray);
+
+    mergeSort(leftArray);
+
+    let tempyArray = [];
+    for (let i = 0; i < halfLength; i++) {
+      console.log(leftArray[i]);
+      if (leftArray[i] < rightArray[0]) {
+        tempyArray.push(leftArray[i]);
+      } else {
+        tempyArray.push(rightArray[0]);
+      }
     }
+
+    console.log("tempyArray");
+    console.log(tempyArray);
+
+    // mergeSort(rightArray);
+
+    return tempyArray;
   }
-  return array;
 }
 
 console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
-console.log(mergeSort([105, 79, 100, 110]));
-console.log(mergeSort([15, 9, 10, 110, 98]));
+// console.log(mergeSort([105, 79, 100, 110]));
+// console.log(mergeSort([15, 9, 10, 110, 98]));
 
 ///pseduocode
 
@@ -39,8 +74,11 @@ console.log(mergeSort([15, 9, 10, 110, 98]));
 // right half of array is array[array.length/2]
 // put contents into RightArray
 
-// chech if LeftArray.lenght < 2, if not
-// mergeSort(Array)
+// check - if leftArray.length > 1
+//mergeSort(leftArray)
+
+// check -  if LeftArray.lenght < 2, if not
+// mergeSort(rightArray)
 
 // else if length = 1
 // create temp array[]
