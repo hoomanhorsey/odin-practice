@@ -290,18 +290,83 @@ console.log("result: ", result);
 var testy = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
 console.log("testy result: ", testy);
 
-// var seven = totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]); // 7
-// console.log("seven: ", seven);
-//
-//
-
-// var none = totalIntegers([1, 1]); // 0
-// console.log("none", none);
-
 // Question 8:
 
 // Write a function that sums squares of numbers in list that may contain more lists
 
-// Question 9:
+function SumSquares(array) {
+  //base
+  if (array.length === 0) return 0;
 
+  let sum = 0;
+  let first = array.shift();
+
+  if (Array.isArray(first)) {
+    sum += SumSquares(first);
+  } else if (Number.isInteger(first)) {
+    sum += first * first;
+  }
+  return sum + SumSquares(array);
+}
+
+var l = [1, 2, 3];
+
+console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[1, 2], 3];
+console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+l = [[[[[[[[[1]]]]]]]]];
+console.log(SumSquares(l)); // 1 = 1
+
+l = [10, [[10], 10], [10]];
+console.log(SumSquares(l)); // 100 + 100 + 100 + 100 = 400
+
+// Question 9:
 // The function should return an array containing repetitions of the number argument. For instance, replicate(3, 5) should return [5,5,5]. If the times argument is negative, return an empty array.
+
+//psuedo code
+
+// declare empty array [ ]
+//base
+// if iteration < 0 , return empty array
+
+// recursion
+
+// function replicate(iterations, value) {
+//   let array = [];
+//   if (iterations < 1) {
+//     return array;
+//   } else {
+//     return (value += replicate(iterations - 1, value));
+//   }
+// }
+
+function replicate(iterations, value) {
+  const array = [];
+  if (iterations < 1) {
+    console.log("base return");
+    // console.log(array);
+
+    return array;
+  } else {
+    array.push(value);
+    // console.log(array);
+    return array.concat(replicate(iterations - 1, value));
+  }
+}
+console.log(replicate(3, 5)); // [5, 5, 5]
+console.log(replicate(1, 69)); // [69]
+console.log(replicate(-2, 6)); // []
+
+// 1. Iterations 3>1, go to else
+//   1a array = [5]
+//     1b replicate(2, 5)
+//         2 Iterations 2 > 1, go to else
+//           2a array = [5]
+//             2b replicate (1, 5)
+//               3 Iterations 1 !< 1, go to else
+//                 3a array = [5]
+//                   3b replicate (0, 5)
+//                     Iterations 0 < 1, go back up the line and return...array
+//                   return
